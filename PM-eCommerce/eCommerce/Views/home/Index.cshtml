@@ -1,0 +1,115 @@
+﻿@model eCommerce.Models.Employee
+
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/home-layout/_home-layout.cshtml";
+}
+
+
+
+@*@if (Session["name"] != null)
+{
+    <h2> Home <br />Hi @Session["name"].ToString()</h2>
+}*@
+
+@if (TempData["msg10"] != null)
+{
+    @Html.Raw(TempData["msg10"])
+}
+
+@*Add project form (no inter action) for all user but the customer  *@
+@if (Session["userType"] != null && int.Parse(Session["userType"].ToString()) != 5)
+{
+    <div class="custom-partial-layout">
+        <h2>addProject</h2>
+        <br />
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <label class="control-label col-md-3" style="color:black">Project Title</label>
+                <div class="col-md-9">
+                    <input type="text" name="ProjectTitle" class="form-control" disabled>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class = "control-label col-md-3" style="color:black" >Description</label>
+                <div class="col-md-9">
+                    <textarea name="Description" class="form-control" form="" disabled></textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+
+                    <input type="submit" value="Add Project" class="btn btn-primary" disabled />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+        <br />
+        <br />
+}
+
+    
+
+@if (Session["userType"] != null && int.Parse(Session["userType"].ToString()) != 5)
+{
+    if (int.Parse(Session["userType"].ToString()) != 1)
+    {
+    
+    <h2>All Current not assigned projects</h2>
+
+    @Html.Action("Show_All_Projects2", "home")
+        <br />
+        <br />
+
+    }
+}
+
+        @*Customer Action At Home*@
+        @if (Session["userType"] != null && int.Parse(Session["userType"].ToString()) == 5)
+        {
+
+            @Html.Action("addProject", "home")
+            <hr />
+            <h2>All Current Not Assigned Projects</h2>
+            <br />
+            @Html.Action("viewProjects", "home")
+            <hr />
+            <h2>Choose Marketing Director</h2>
+            <br />
+            @Html.Action("displayMDrequests", "home")
+            <br />
+            <br />
+
+        }
+
+
+        @*MD action at home*@
+        @if (Session["userType"] != null && int.Parse(Session["userType"].ToString()) == 1)
+        {
+
+            <h2>All Current not assigned projects</h2>
+
+            @Html.Action("Show_All_Projects", "home")
+            <br />
+            <br />
+        }
+
+
+        @if (ViewBag.Message != null)
+        {<div class="form-group">
+
+            <div class="col-md-10">@ViewBag.Message;</div>
+
+        </div>
+
+        }
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

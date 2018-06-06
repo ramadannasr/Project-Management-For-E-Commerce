@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ECOMMERCEModel2.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="JobDescription" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Mobile" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" />
+    <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserType" Type="int" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Mobile" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="UserType" Type="int" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="JobDescription" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Mobile" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Photo" Type="varbinary(max)" />
+    <Property Name="Experience" Type="int" Nullable="false" />
+    <Property Name="UserType" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee_Request">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sender_ID" Type="int" Nullable="false" />
+    <Property Name="Reciever_ID" Type="int" Nullable="false" />
+    <Property Name="Status_ID" Type="int" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserType" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MD_Cust_Request">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MD_ID" Type="int" Nullable="false" />
+    <Property Name="Customer_ID" Type="int" Nullable="false" />
+    <Property Name="Status_ID" Type="int" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MT_Evaluation">
+    <Key>
+      <PropertyRef Name="Project_ID" />
+      <PropertyRef Name="MT_ID" />
+    </Key>
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+    <Property Name="MT_ID" Type="int" Nullable="false" />
+    <Property Name="FeedBack" Type="varchar" MaxLength="150" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Approval_ID" Type="int" Nullable="false" />
+    <Property Name="Customer_ID" Type="int" />
+    <Property Name="ProjectTitle" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectModule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Project_ID" Type="int" Nullable="false" />
+    <Property Name="MD_ID" Type="int" Nullable="false" />
+    <Property Name="MTL_ID" Type="int" />
+    <Property Name="Price" Type="float" />
+    <Property Name="Status" Type="int" />
+    <Property Name="StartDate" Type="date" />
+    <Property Name="EndDate" Type="date" />
+    <Property Name="NoOfHoursPerDay" Type="int" />
+  </EntityType>
+  <EntityType Name="ProjectStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RequestStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="WorksOn">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Emp_ID" Type="int" Nullable="false" />
+    <Property Name="ProjectID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Admin_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="0..1" />
+    <End Role="Admin" Type="Self.Admin" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Admin">
+        <PropertyRef Name="UserType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="UserType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="UserType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Request_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Employee_Request" Type="Self.Employee_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee_Request">
+        <PropertyRef Name="Sender_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Request_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="Employee_Request" Type="Self.Employee_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee_Request">
+        <PropertyRef Name="Reciever_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Request_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="Employee_Request" Type="Self.Employee_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee_Request">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Request_RequestStatus">
+    <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1" />
+    <End Role="Employee_Request" Type="Self.Employee_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Employee_Request">
+        <PropertyRef Name="Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MD_Cust_Request_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+    <End Role="MD_Cust_Request" Type="Self.MD_Cust_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MD_Cust_Request">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MD_Cust_Request_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="MD_Cust_Request" Type="Self.MD_Cust_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MD_Cust_Request">
+        <PropertyRef Name="MD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MD_Cust_Request_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="MD_Cust_Request" Type="Self.MD_Cust_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MD_Cust_Request">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MD_Cust_Request_RequestStatus">
+    <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1" />
+    <End Role="MD_Cust_Request" Type="Self.MD_Cust_Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MD_Cust_Request">
+        <PropertyRef Name="Status_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MT_Evaluation_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="MT_Evaluation" Type="Self.MT_Evaluation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MT_Evaluation">
+        <PropertyRef Name="MT_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MT_Evaluation_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="MT_Evaluation" Type="Self.MT_Evaluation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MT_Evaluation">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Customer_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_RequestStatus">
+    <End Role="RequestStatus" Type="Self.RequestStatus" Multiplicity="1" />
+    <End Role="Project" Type="Self.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RequestStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Approval_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectModule_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="ProjectModule" Type="Self.ProjectModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProjectModule">
+        <PropertyRef Name="MTL_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectModule_Employee1">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="ProjectModule" Type="Self.ProjectModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProjectModule">
+        <PropertyRef Name="MD_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectModule_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="ProjectModule" Type="Self.ProjectModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProjectModule">
+        <PropertyRef Name="Project_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectModule_ProjectStatus">
+    <End Role="ProjectStatus" Type="Self.ProjectStatus" Multiplicity="0..1" />
+    <End Role="ProjectModule" Type="Self.ProjectModule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProjectModule">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorksOn_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+    <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorksOn">
+        <PropertyRef Name="Emp_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorksOn_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="1" />
+    <End Role="WorksOn" Type="Self.WorksOn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorksOn">
+        <PropertyRef Name="ProjectID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ECOMMERCEModel2StoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee_Request" EntityType="Self.Employee_Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MD_Cust_Request" EntityType="Self.MD_Cust_Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MT_Evaluation" EntityType="Self.MT_Evaluation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectModule" EntityType="Self.ProjectModule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectStatus" EntityType="Self.ProjectStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestStatus" EntityType="Self.RequestStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorksOn" EntityType="Self.WorksOn" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Admin_EmployeeType" Association="Self.FK_Admin_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="Admin" EntitySet="Admin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_EmployeeType" Association="Self.FK_Customer_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmployeeType" Association="Self.FK_Employee_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Request_Employee" Association="Self.FK_Employee_Request_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Employee_Request" EntitySet="Employee_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Request_Employee1" Association="Self.FK_Employee_Request_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Employee_Request" EntitySet="Employee_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Request_Project" Association="Self.FK_Employee_Request_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Employee_Request" EntitySet="Employee_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Request_RequestStatus" Association="Self.FK_Employee_Request_RequestStatus">
+      <End Role="RequestStatus" EntitySet="RequestStatus" />
+      <End Role="Employee_Request" EntitySet="Employee_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MD_Cust_Request_Customer" Association="Self.FK_MD_Cust_Request_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="MD_Cust_Request" EntitySet="MD_Cust_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MD_Cust_Request_Employee" Association="Self.FK_MD_Cust_Request_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="MD_Cust_Request" EntitySet="MD_Cust_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MD_Cust_Request_Project" Association="Self.FK_MD_Cust_Request_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="MD_Cust_Request" EntitySet="MD_Cust_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MD_Cust_Request_RequestStatus" Association="Self.FK_MD_Cust_Request_RequestStatus">
+      <End Role="RequestStatus" EntitySet="RequestStatus" />
+      <End Role="MD_Cust_Request" EntitySet="MD_Cust_Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MT_Evaluation_Employee" Association="Self.FK_MT_Evaluation_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="MT_Evaluation" EntitySet="MT_Evaluation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MT_Evaluation_Project" Association="Self.FK_MT_Evaluation_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="MT_Evaluation" EntitySet="MT_Evaluation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Customer" Association="Self.FK_Project_Customer">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_RequestStatus" Association="Self.FK_Project_RequestStatus">
+      <End Role="RequestStatus" EntitySet="RequestStatus" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectModule_Employee" Association="Self.FK_ProjectModule_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ProjectModule" EntitySet="ProjectModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectModule_Employee1" Association="Self.FK_ProjectModule_Employee1">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="ProjectModule" EntitySet="ProjectModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectModule_Project" Association="Self.FK_ProjectModule_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectModule" EntitySet="ProjectModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectModule_ProjectStatus" Association="Self.FK_ProjectModule_ProjectStatus">
+      <End Role="ProjectStatus" EntitySet="ProjectStatus" />
+      <End Role="ProjectModule" EntitySet="ProjectModule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorksOn_Employee" Association="Self.FK_WorksOn_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="WorksOn" EntitySet="WorksOn" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorksOn_Project" Association="Self.FK_WorksOn_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="WorksOn" EntitySet="WorksOn" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

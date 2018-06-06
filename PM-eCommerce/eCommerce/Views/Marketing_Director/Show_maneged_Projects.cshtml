@@ -1,0 +1,74 @@
+﻿@model IEnumerable<eCommerce.Models.ProjectModule>
+@if(Model != null) { 
+<table class="table">
+    <tr class="mytr">
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfHoursPerDay)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectStatus.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoOfHoursPerDay)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectStatus.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "ProjectDetails", new { id = item.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("MTL", "MTL_foreachproModule", new { id = item.Project_ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("MTs", "List_MTs_foreachproModule", new { id = item.Project_ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("MT's FeedBack", "Show_All_MT_Evaluation_For_Each_Project", new { id = item.Project_ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+            <hr />
+
+            @using (Html.BeginForm("Leave_Project", "Marketing_Director", new { id = item.ID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to Leave this Project?' );" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Leave This Project" class="btn btn-danger"/>
+            }
+        </td>
+    </tr>
+}
+
+</table>
+}else
+    {
+        @Html.Action("emptyMessage","home")
+    }

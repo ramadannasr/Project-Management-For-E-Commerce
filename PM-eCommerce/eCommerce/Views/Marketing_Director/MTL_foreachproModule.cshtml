@@ -1,0 +1,90 @@
+﻿@model IEnumerable<eCommerce.Models.Employee>
+
+@{
+    ViewBag.Title = "MTL_foreachproModule";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+@section MD_personal_info{
+@if(Model != null) { 
+<h2>MTLs Working In This Project</h2>
+<table class="table">
+    <tr>
+        <th>
+            Photo
+        </th>
+        <th>
+            MT name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Experience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeType.UserType)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+
+                @if (item.Photo != null)
+                {
+                    var base64 = Convert.ToBase64String(item.Photo);
+                    var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                    <img src='@imgsrc' style="max-width:80px;max-height:100px" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Mobile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeType.UserType)
+            </td>
+            <td>
+                @using (Html.BeginForm("remove_project_member", "Marketing_Director", new { id = item.ID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this MTL From This Project?' );" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Remove From This Project" class="btn btn-default"/>
+                }
+            </td>
+        </tr>
+
+    }
+
+</table>
+    
+
+    @Html.ActionLink("Back to Profile", "Index")
+
+}else
+{
+@Html.Action("emptyMessage","home")
+}
+}

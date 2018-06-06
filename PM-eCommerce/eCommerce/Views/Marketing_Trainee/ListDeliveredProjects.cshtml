@@ -1,0 +1,83 @@
+﻿
+@model IEnumerable<eCommerce.Models.ProjectModule>
+
+
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr class="mytr">
+            <th>
+                @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+            </th>
+            <th>
+                Customer
+            </th>
+            <th>
+                Marketing Director
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectStatus.Status)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.Customer.FirstName)
+                    @Html.DisplayFor(modelItem => item.Project.Customer.LastName)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                    @Html.DisplayFor(modelItem => item.Employee.LastName)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectStatus.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+
+                    @*@Html.ActionLink("Details", "ProjectDetails", new { id = item.ID })*@
+
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    @Html.Action("emptyMessage", "home")
+}

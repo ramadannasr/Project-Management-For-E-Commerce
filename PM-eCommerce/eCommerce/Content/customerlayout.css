@@ -1,0 +1,180 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image:url(images/Sports.png);
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+h2{font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          background:#e3e3e3;
+          margin-top:0px;
+          padding:15px;
+}
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*start header*/
+.navbar-inverse .navbar-nav {
+    float: right;
+}
+.custom-margin
+{
+    margin-bottom:60px;
+}
+
+/*end header*/
+
+
+/*start scroll up*/
+
+#scroll-up {
+    width: 0px;
+    height: 50px;
+    position: fixed;
+    right: 50px;
+    bottom: 20px;
+    z-index: 9999;
+    cursor: pointer;
+    display: none;
+    opacity: .7;
+}
+#scroll-up img{width: 50px;}
+#scroll-up:hover {
+    opacity: 1;
+}
+
+
+/*end scroll up*/
+
+
+/*start footer*/
+.footer {
+    margin-top:135px;
+    background-color:#428bca;
+    padding-top:10px;
+    width: 100%;
+    margin-bottom:-20px;
+}
+    .footer span {
+        float: left;
+        padding-top: 8px;
+        font-size: 18px;
+        margin-left: 10%;
+        color: black;
+    }
+
+    .footer ul {
+        list-style: none;
+        margin-right: 10%;
+    }
+
+        .footer ul li {
+            font-size: 35px;
+            padding-left: 10px;
+            float: right;
+        }
+
+            .footer ul li a {
+                color: black;
+            }
+
+            .footer ul li .face:hover {
+                color: #3b5998;
+            }
+
+            .footer ul li .goo:hover {
+                color: #dd4b39;
+            }
+
+            .footer ul li .you:hover {
+                color: #bb0000;
+            }
+
+            .footer ul li .twi:hover {
+                color: #00aced;
+            }
+
+/*end footer*/
+/*start personal info*/
+.personal-info {
+    background:#E7E7E7;
+     border:1px solid;
+   padding:15px;
+   box-shadow:3px 3px 5px 1px;
+   border-radius:15px 0px 15px 0px;
+   text-align:center;
+}
+
+    .personal-info .lable {
+        font-weight: bold;
+        font-size: 15px;
+
+    }
+
+    .personal-info img {
+        height:150px;
+        width:150px;
+        border: 2px solid black;
+        border-radius: 100%;
+        margin-bottom: 10px;
+        box-shadow: 1px 2px 2px 2px #5a3e3e;
+    }
+    .edit-customer-personal-info
+    {
+        width:100%;
+       margin-left:100%;
+    }
+   .edit-customer-personal-info img
+   {
+      height:150px;
+        width:150px;
+        border: 2px solid black;
+        border-radius: 100%;
+        margin-bottom: 10px;
+        box-shadow: 1px 2px 2px 2px #5a3e3e;
+        margin-left:100px;
+   }
+
+/*end personal info*/
+
+/*start projects*/
+.customer_projects
+{
+     border:1px solid;
+    padding:15px;
+    margin-top:20px;
+    border-radius:5px;
+}
+.customer_projects .cusotm-hr {
+        margin-bottom:15px;
+        background: #ac9a8a;
+        height: 1.5px;
+    }
+/*end projects*/
+/*start statistics*/
+.statistics{width:75%;margin-bottom:10px;margin-left:20%;}
+.md_statistics{width:75%;margin-left:100%;margin-top:-6%;}
+/*end statistics*/
+/*start customs*/
+.custom-partial-layout{width: 90%;
+    font-size: 15px;
+    margin-bottom: 20px;
+    background: #E7E7E7;
+    border: 1px solid;
+    padding: 15px;
+    box-shadow: 3px 3px 5px 1px;
+    border-radius: 15px 0px 15px 0px;
+    margin-top: 30px;
+    margin-left:100%;
+}
+ .mytr{background-color:#e3e2e2;}
+
+/*end customs*/

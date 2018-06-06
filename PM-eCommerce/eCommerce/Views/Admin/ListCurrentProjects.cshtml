@@ -1,0 +1,55 @@
+﻿
+@model IEnumerable<eCommerce.Models.MD_Cust_Request>
+
+@if (Model != null)
+{
+<table class="table">
+    <tr class="mytr">
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+        </th>
+        <th>
+            <label>Marketing Director</label>
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </th>
+        <th>
+            <label>Customer</label>
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                @Html.DisplayFor(modelItem => item.Employee.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Project.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.FirstName)
+                @Html.DisplayFor(modelItem => item.Customer.LastName)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "ProjectDetails", new { id = item.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+            </td>
+
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                     |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>*@
+        </tr>
+    }
+
+</table>
+}else {@Html.Action("emptyMessage","home") }

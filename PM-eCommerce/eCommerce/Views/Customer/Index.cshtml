@@ -1,0 +1,84 @@
+﻿@model eCommerce.Models.Customer
+
+@{
+    ViewBag.Title = "Customer";
+    Layout = "~/Views/customer-layout/_customer-layout.cshtml";
+}
+
+
+@section customer_personal_info{
+    <div class="personal-info">
+        @if (TempData["msg10"] != null)
+        {
+            @Html.Raw(TempData["msg10"])
+        }
+    @{
+        var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        <img src='@imgsrc' style="max-width:300px;max-height:300px" />
+    }
+    <br />
+       
+    <span class="lable">@Html.DisplayNameFor(model => model.FirstName):</span>
+    @Html.DisplayFor(model => model.FirstName)
+
+    <span class="lable">@Html.DisplayNameFor(model => model.LastName):</span>
+    @Html.DisplayFor(model => model.LastName)
+
+    <br />
+        <span class="lable">@Html.DisplayNameFor(model => model.Description):</span>
+        @Html.DisplayFor(model => model.Description)
+        <br />
+        <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+        @Html.DisplayFor(model => model.Email)
+        <br />
+        <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+        @Html.DisplayFor(model => model.Mobile)<hr />
+        @*
+    <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+    @Html.DisplayFor(model => model.Mobile)
+
+    <hr />
+    <span class="lable">@Html.DisplayNameFor(model => model.UserName):</span>
+    @Html.DisplayFor(model => model.UserName)
+
+    <span class="lable">@Html.DisplayNameFor(model => model.Password):</span>
+    @Html.DisplayFor(model => model.Password)
+    <hr />
+    <span class="lable">@Html.DisplayNameFor(model => model.EmployeeType.UserType):</span>
+    @Html.DisplayFor(model => model.EmployeeType.UserType)
+    <hr />
+    <span class="lable">@Html.DisplayNameFor(model => model.Description):</span>
+    @Html.DisplayFor(model => model.Description)
+    <hr />*@
+    
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+        @Html.ActionLink("Details", "Details", new { id = Model.ID }, new { @class = "glyphicon glyphicon-eye-open btn btn-primary" })
+
+</div>
+
+}
+@section customer_projects{
+  <div class="customer_projects">
+    <h2>Current Assigned Projects</h2>
+    <div id="current">
+        @Html.Action("ListCurrentProjects", "Customer")
+    </div>
+      <div class="cusotm-hr"></div>
+    <h2>Previous Delivered Projects</h2>
+    <div id="delivered">
+        @Html.Action("ListDeliveredProjects", "Customer")
+    </div>
+      <div class="cusotm-hr"></div>
+    <h2>Not Assigned Projects</h2>
+    <div id="not_assigned">
+        @Html.Action("viewProjects", "Customer")
+    </div>
+      <div class="cusotm-hr"></div>
+    <h2>Marketing Director Requests</h2>
+    <div id="md_request">
+        @Html.Action("displayMDrequests", "Customer")
+    </div>
+</div>
+}

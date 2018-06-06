@@ -1,0 +1,54 @@
+﻿@model IEnumerable<eCommerce.Models.MD_Cust_Request>
+    @using System.Diagnostics;
+@if (Model != null)
+{
+
+    <table class="table">
+        <tr class="mytr">
+            <th>
+                @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+            </th>
+            <th>
+                Marketing Director
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RequestStatus.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Project.Description)
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee.FirstName)
+                    @Html.DisplayFor(modelItem => item.Employee.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RequestStatus.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Project.Description)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Assign", "AssignProjectToMD", new { id = item.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" }) 
+                    @Html.ActionLink("MD Details", "MDdetails", new { id = item.MD_ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+
+                    @Html.ActionLink("reject", "rejectRequest", new { id = item.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+
+
+                </td>
+            </tr>
+        }
+    </table>
+
+}
+else { @Html.Action("emptyMessage", "home") }
+
+

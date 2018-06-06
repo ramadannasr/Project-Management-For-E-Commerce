@@ -1,0 +1,39 @@
+﻿@model eCommerce.Models.MT_Evaluation
+
+@{
+    ViewBag.Title = "EVALUATETRAINEE";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+
+<h2>EVALUATETRAINEE</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.MT_ID)
+    @Html.HiddenFor(model => model.Project_ID)
+
+    <div class="form-horizontal">
+        <h4>MT_Evaluation</h4>
+        
+        <h4>Trainee</h4>
+  <h3>Trainee : </h3>
+        <div class="form-group">
+            @Html.LabelFor(model => model.FeedBack, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.FeedBack, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FeedBack, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

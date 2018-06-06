@@ -1,0 +1,48 @@
+﻿@model eCommerce.Models.Project
+
+@{
+    ViewBag.Title = "ProjectDetails";
+    Layout = "~/Views/customer-layout/_customer-layout.cshtml";
+}
+
+<h2>ProjectDetails</h2>
+
+<div class="personal-info">
+    <dl class="dl-horizontal">
+        <dt>
+           Marketing Director
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MD_Cust_Request.FirstOrDefault(p => p.Project_ID == model.ID && p.Status_ID ==2).Employee.FirstName)
+            @Html.DisplayFor(model => model.MD_Cust_Request.FirstOrDefault(p => p.Project_ID == model.ID && p.Status_ID == 2).Employee.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProjectTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Customer
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.FirstName)
+            @Html.DisplayFor(model => model.Customer.LastName)
+        </dd>
+
+    </dl>
+</div>
+

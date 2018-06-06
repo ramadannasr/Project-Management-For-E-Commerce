@@ -1,0 +1,46 @@
+﻿@model IEnumerable<eCommerce.Models.Project>
+
+@if(Model != null) { 
+<table class="table">
+    <tr class="mytr">
+        <th>
+            @Html.DisplayNameFor(model => model.ProjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.RequestStatus.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestStatus.Status)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditProject", new { id = item.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+        <td>
+            @using (Html.BeginForm("DeleteProject", "home", new { id = item.ID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?' );" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Delete Project" class="btn btn-danger" />
+            }
+        </td>
+    </tr>
+    }
+
+
+</table>
+}
+else { @Html.Action("emptyMessage","home") }

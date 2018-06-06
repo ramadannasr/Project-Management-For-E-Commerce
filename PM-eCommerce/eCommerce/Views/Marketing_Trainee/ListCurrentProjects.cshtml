@@ -1,0 +1,68 @@
+﻿@model IEnumerable<eCommerce.Models.WorksOn>
+
+@if ( Model != null) { 
+<table class="table">
+    <tr class="mytr">
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+        </th>
+       
+        <th>
+           Marketing Director
+        </th>
+       
+        <th>
+            Customer
+        </th>
+        <th>
+            Status
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.MD_Cust_Request.FirstOrDefault(u => u.Project_ID == item.ProjectID).Employee.FirstName)
+            @Html.DisplayFor(modelItem => item.Project.MD_Cust_Request.FirstOrDefault(u => u.Project_ID == item.ProjectID).Employee.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Customer.FirstName)
+            @Html.DisplayFor(modelItem => item.Project.Customer.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectModule.FirstOrDefault(p => p.Project_ID == item.ProjectID).ProjectStatus.Status)
+        </td>
+        
+        <td>
+            @if(item.Project.Employee_Request.FirstOrDefault(u => u.Sender_ID == item.Emp_ID && u.Project_ID ==item.ProjectID) != null)
+            {
+            <p> Pending waiting for MD Approval</p>
+            @Html.ActionLink("Details", "ProjectDetails", new { id = item.ProjectID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+            }
+            else
+            {
+                
+                using (Html.BeginForm("leaveProject", "Marketing_Trainee", new { id = item.ProjectID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to Leave this Project?' );" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="leaveProject" class="btn btn-default"/>
+                }
+
+                @Html.ActionLink("Details", "ProjectDetails", new { id = item.ProjectID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+
+            }
+           
+            
+        </td>
+    </tr>
+}
+
+</table>
+}else
+ {
+@Html.Action("emptyMessage", "home")
+}

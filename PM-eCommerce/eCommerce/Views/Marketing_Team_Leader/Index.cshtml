@@ -1,0 +1,96 @@
+﻿@model eCommerce.Models.Employee
+
+@{
+    ViewBag.Title = "Marketing_Team_leader";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+@section MTL_personal_section{
+<div class="personal-info">
+    @if (TempData["msg10"] != null)
+    {
+        @Html.Raw(TempData["msg10"])
+    }
+    @if (Model.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        <img src='@imgsrc' style="max-width:300px;max-height:300px" />
+    }
+    <br />
+    
+    <span class="lable">FullName:</span>
+    @Html.DisplayFor(model => model.FirstName)
+    @Html.DisplayFor(model => model.LastName)
+    <br /><hr />
+    <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+    @Html.DisplayFor(model => model.JobDescription)
+    <br /><hr />
+    <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+    @Html.DisplayFor(model => model.Email)
+    <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+    @Html.DisplayFor(model => model.Mobile)
+    <br /><hr />
+
+    @*
+    <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+    @Html.DisplayFor(model => model.JobDescription)
+    <br /><hr />
+    <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+    @Html.DisplayFor(model => model.Mobile)
+    <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+    @Html.DisplayFor(model => model.Email)
+    <br /><hr />
+    <span class="lable">@Html.DisplayNameFor(model => model.Experience):</span>
+    @Html.DisplayFor(model => model.Experience)
+
+    <span class="lable">@Html.DisplayNameFor(model => model.UserName):</span>
+    @Html.DisplayFor(model => model.UserName)
+
+    @*<span class="lable">@Html.DisplayNameFor(model => model.EmployeeType.UserType):</span>
+    @Html.DisplayFor(model => model.EmployeeType.UserType)
+    *@
+
+
+    <div class="statistics">
+        @Html.Action("ExperinceChart", "Marketing_Director")
+    </div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+    @Html.ActionLink("Details", "Details", new { id = Model.ID }, new { @class = "glyphicon glyphicon-eye-open btn btn-primary" })
+</div>
+
+   
+}
+@section MTL_projects{
+    <div class="posts">
+    <h3>ALL Current Working Projects</h3>
+    <div id="mtlcurrent">
+        @Html.Action("LISTALLCURRENTPROJECTS", "Marketing_Team_Leader")
+    </div>
+        <div class="cusotm-hr"></div>
+    <h3>ALL Delieverd Projects</h3>
+    <div id="mtlDelieverd">
+        @Html.Action("LISTALLDELEVIREDPROJECTS", "Marketing_Team_Leader")
+    </div>
+        <div class="cusotm-hr"></div>
+
+    <h3 class="alert-success"> Current Projects 's trainees</h3>
+    <div id="mtlcurrent">
+        @Html.Action("LISTALLCURRENTTRAINEES", "Marketing_Team_Leader")
+    </div><div class="cusotm-hr"></div>
+    @*<h3 class="alert-success">LIST ALL TRAINEES</h3>
+        <div >
+
+            @Html.Action("LISTALLTRAINEES", "Marketing_Team_Leader")
+
+        </div>*@
+    @*<h3>evaluate trainee</h3>
+        <div>
+            @Html.Action("EVALUATETRAINEE", "Marketing_Team_Leader");
+        </div>*@
+    <h3 class="alert-success">Requests</h3>
+    <div id="mtlrequests">
+        @Html.Action("listRequestMD", "Marketing_Team_Leader")
+    </div><div class="cusotm-hr"></div>
+</div>
+    }

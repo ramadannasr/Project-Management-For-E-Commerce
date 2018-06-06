@@ -1,0 +1,95 @@
+﻿@model eCommerce.Models.Admin
+
+@{
+    ViewBag.Title = "Admin profile";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+<!--start personal information-->
+@section admin_personal_section{
+        <div class="personal-info">
+            @if (TempData["msg10"] != null)
+            {
+                @Html.Raw(TempData["msg10"])
+            }
+       
+            @if (Model.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                <img src='@imgsrc' style="max-width:300px;max-height:300px" />
+    }
+        <br />
+          
+        <span class="lable">@Html.DisplayNameFor(model => model.FirstName):</span>
+        @Html.DisplayFor(model => model.FirstName)
+
+        <span class="lable">@Html.DisplayNameFor(model => model.LastName):</span>
+        @Html.DisplayFor(model => model.LastName)
+        <br /><hr />
+            <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+            @Html.DisplayFor(model => model.JobDescription)
+            <hr />
+            <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+            @Html.DisplayFor(model => model.Email)
+            <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+            @Html.DisplayFor(model => model.Mobile)
+            <br /><hr />
+         
+                       @*
+         <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+         @Html.DisplayFor(model => model.JobDescription)
+         <hr /><br />
+
+         <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+         @Html.DisplayFor(model => model.Mobile)
+
+         <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+         @Html.DisplayFor(model => model.Email)
+         <br /><hr />
+        <span class="lable">@Html.DisplayNameFor(model => model.UserName):</span>
+                 @Html.DisplayFor(model => model.UserName)
+
+             <span class="lable">@Html.DisplayNameFor(model => model.Password):</span>
+             @Html.DisplayFor(model => model.Password)
+             <br /><hr />
+         <span class="lable">@Html.DisplayNameFor(model => model.EmployeeType.UserType):</span>
+         @Html.DisplayFor(model => model.EmployeeType.UserType)
+         <br /><br />*@
+@Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+@Html.ActionLink("Details", "Details", new { id = Model.ID }, new { @class = "glyphicon glyphicon-eye-open btn btn-primary" })
+}
+</div>
+<!--end personal information-->
+
+<!--start posts-->
+@section Posts{
+    <div class="posts">
+    <h3>Posts need Approval</h3>
+    <div id="approve">
+        @Html.Action("ListAllPosts", "Admin")
+    </div><div class="cusotm-hr"></div>
+    <!--end posts need approval-->
+
+    <h3>Current Assigned Projects</h3>
+    <div id="current">
+        @Html.Action("ListCurrentProjects", "Admin")
+    </div>
+        <div class="cusotm-hr"></div>
+    <h3>delivered Projects</h3>
+    <div id="delivered">
+        @Html.Action("ListDeliveredProjects", "Admin")
+    </div>
+        <div class="cusotm-hr"></div>
+
+    <h3>All Users</h3>@Html.ActionLink("Add New User", "AddNewUser", "Admin", new {@class= "btn btn-primary custom_link" })
+    <div id="users">
+        @Html.Action("ListAllUsers", "Admin")
+    </div>
+        <div class="cusotm-hr"></div>
+    <h3>Customers</h3>@Html.ActionLink("Add New Customer", "AddNewUser", new { type = 1 },new { @class= "btn btn-primary custom_link" })
+    <div id="customers">
+        @Html.Action("ListAllCustomers", "Admin")
+    </div>
+</div>
+}

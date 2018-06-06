@@ -1,0 +1,84 @@
+﻿@model IEnumerable<eCommerce.Models.WorksOn>
+
+<p>
+    All Trainees Working In My Projects
+</p>
+
+@if (Model != null)
+{
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee.Photo)
+        </th>
+        <th>
+           MT Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </th>
+        <th>
+         MD Name 
+        </th>
+        <th>Remove Trainee</th>
+        <th>Evaluate Trainee</th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @if (item.Employee.Photo != null)
+            {
+                var base64 = Convert.ToBase64String(item.Employee.Photo);
+                var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                <img src='@imgsrc' style="max-width:80px;max-height:100px" />
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            @Html.DisplayFor(modelItem => item.Employee.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.MD_Cust_Request.FirstOrDefault(u => u.Project_ID == item.ProjectID).Employee.FirstName)
+            @Html.DisplayFor(modelItem => item.Project.MD_Cust_Request.FirstOrDefault(u => u.Project_ID == item.ProjectID).Employee.LastName)
+        </td>
+        <td>
+           
+            @using (Html.BeginForm("confirmDeletTrainee", "Marketing_Team_Leader", new { id = item.ID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this?' );" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Remove Trainee"  class="btn btn-default"/>
+            }
+            @*@Html.ActionLink("Evaluate", "EVALUATETRAINEE", new { tid = item.Emp_ID, pid = item.ProjectID }, null)*@
+            
+        </td>
+        <td>
+            @using (Html.BeginForm("EVALUATETRAINEE", "Marketing_Team_Leader", new { id = item.ID }, FormMethod.Post, new { onsubmit = "return confirm('Send Feedback to MD ?' );" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.TextBox("textbox", "", new {@class = "form-control" } )
+                <input type="submit" value="Send"  class="btn btn-default"/>
+            }
+           
+
+
+        </td>
+    </tr>
+}
+
+</table>
+}
+else {
+@Html.Action("emptyMessage","home")
+}

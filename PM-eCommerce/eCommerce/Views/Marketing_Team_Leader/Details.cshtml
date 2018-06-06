@@ -1,0 +1,91 @@
+﻿@model eCommerce.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+@section MTL_personal_section{
+<div class="personal-info">
+    <h2>MTL Details</h2>
+    @if (Model.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        <img src='@imgsrc' style="max-width:250px;max-height:250px" />
+    }
+
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeType.UserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeType.UserType)
+        </dd>
+
+    </dl>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+    <br />
+}
+</div>

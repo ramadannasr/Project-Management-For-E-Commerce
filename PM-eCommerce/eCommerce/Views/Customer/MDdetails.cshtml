@@ -1,0 +1,106 @@
+﻿@model eCommerce.Models.Employee
+
+@{
+    ViewBag.Title = "MDdetails";
+    Layout = "~/Views/customer-layout/_customer-layout.cshtml";
+}
+
+
+@if(Model != null) { 
+<div class="edit-customer-personal-info">
+    <h2>Marketing Director details</h2>
+    @{
+        var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        <img src='@imgsrc' style="max-width:300px;max-height:300px" />
+    }
+    
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+      
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmployeeType.UserType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmployeeType.UserType)
+        </dd>
+
+    </dl>
+</div>
+        //MD_Experience Chart
+
+        int ex = Convert.ToInt32(Model.Experience);
+        int num = int.Parse(ViewData["NumProjects"].ToString());
+        <div class="md_statistics">
+
+            <div id="myDiv" class="test"><!-- Plotly chart will be drawn inside this DIV --></div>
+            <script>
+                var data = [{
+                    x: ['experience', 'Number Of Projects '],
+                    y: [@ex,@num],
+                    type: 'bar'
+                }];
+
+                Plotly.newPlot('myDiv', data);
+            </script>
+
+        </div>
+<hr />
+      
+
+        }
+        else
+        { @Html.Action("emptyMessage", "home")}
+<p>
+    @*@Html.ActionLink("Assign Project to that MD", "Edit", new { id = Model.ID }) |*@
+   
+</p>

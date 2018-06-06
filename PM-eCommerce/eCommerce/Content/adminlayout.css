@@ -1,0 +1,232 @@
+﻿
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    background-image:url(images/Sports.png);
+}
+
+/* Set padding to keep content from hitting the edges */
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/*start header*/
+.navbar-inverse .navbar-nav {
+    float: right;
+}
+/*end header*/
+
+
+/*start scroll up*/
+
+#scroll-up {
+    width: 0px;
+    height: 50px;
+    position: fixed;
+    right: 50px;
+    bottom: 20px;
+    z-index: 9999;
+    cursor: pointer;
+    display: none;
+    opacity: .7;
+}
+
+    #scroll-up img {
+        width: 50px;
+    }
+
+    #scroll-up:hover {
+        opacity: 1;
+    }
+
+
+/*end scroll up*/
+
+
+/*start navbar*/
+.nav-sidebar {
+    text-align: center;
+    width: 250px;
+    margin-top: 20px;
+    margin-bottom: 200px;
+    padding: 5px;
+    padding-right: 20px;
+    box-shadow:2px 2px 2px 3px ;
+}
+
+    .nav-sidebar a {
+        color: #333;
+    }
+
+    .nav-sidebar .active a {
+        cursor: pointer;
+        background-color: #428bca;
+        color: #fff;
+        text-shadow: 1px 1px 1px #666;
+    }
+
+        .nav-sidebar .active a:hover {
+            background-color: #428bca;
+        }
+/*end navbar*/
+/*start personal info*/
+
+.personal-info {
+    width: 65%;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    background: #E7E7E7;
+    border: 1px solid;
+    padding: 15px;
+    box-shadow: 3px 3px 5px 1px;
+    border-radius: 15px 0px 15px 0px;
+    margin-top: 30px;
+}
+
+    .personal-info .lable {
+        font-weight: bold;
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    .personal-info img {
+        margin: 5px;
+        height: 150px;
+        width: 150px;
+        border: 2px solid black;
+        border-radius: 100%;
+        box-shadow: 2px 3px 10px 5px #5a3e3e;
+        margin-bottom: 30px;
+    }
+
+.custom-btn {
+    width: 80px;
+    height: 35px;
+    background: #39B3D7;
+    border-radius: 5px;
+    padding: 5px 5px;
+    color: white;
+    font-weight: normal;
+    border-color: #46b8da;
+}
+
+    .custom-btn:hover {
+        background: none;
+        color: black;
+        outline: none;
+    }
+
+/*end personal info*/
+
+/*start admin-posts*/
+.posts {
+    border: 1px solid;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+   .posts h3{font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          background:#e3e3e3;
+          margin-top:0px;
+          padding:15px;
+}
+
+.md_posts h3 {
+font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          background:#e3e3e3;
+          margin-top:0px;
+          padding:15px;}
+
+.posts .cusotm-hr {
+    margin-bottom: 15px;
+    background: #ac9a8a;
+    height: 1.5px;
+}
+/*end admin-posts*/
+
+/*start MTL posts*/
+/*
+.mtl_posts {
+    border: 1px solid;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-right: 30%;
+}
+    /*
+.mtl_posts h3 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+    .mtl_posts .cusotm-hr {
+        margin-bottom: 15px;
+        background: #ac9a8a;
+        height: 1.5px;
+    }
+
+/*end MTL posts*/
+
+/*start md posts*/
+.md_posts {
+    border: 1px solid;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+    .md_posts .cusotm-hr {
+        margin-bottom: 15px;
+        background: #ac9a8a;
+        height: 1.5px;
+    }
+/*end md posts*/
+/*start list-all-trainee*/
+.list-all-trainee {
+}
+/*end list-all-trainee*/
+/*start statistics*/
+.statistics {
+    width: 60%;
+    margin-bottom: 10px;
+    margin-left: 20%;
+}
+
+.test {
+    height: 300px;
+}
+/*end statistics*/
+/*start customs*/
+.custom-partial-layout{width: 100%;
+    font-size: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    background: #E7E7E7;
+    border: 1px solid;
+    padding: 15px;
+    box-shadow: 3px 3px 5px 1px;
+    border-radius: 15px 0px 15px 0px;
+    margin-top: 30px;}
+
+
+.custom_link{float:right;margin-top:-55px;margin-right:10px;}
+
+.user_image
+{
+    height: 90px;
+    width:90px;
+    border-radius: 100%;
+}
+
+ .mytr{background-color:#e3e2e2;}
+/*end customs*/
+
+/*td{background-color:gainsboro;}*/

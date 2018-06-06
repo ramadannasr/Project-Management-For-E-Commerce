@@ -1,0 +1,98 @@
+﻿@model eCommerce.Models.Employee
+
+@{
+    ViewBag.Title = "Market Trainee";
+    Layout = "~/Views/customer-layout/_customer-layout.cshtml";
+}
+
+@section trainee_personal_info{
+    <div class="personal-info">
+        @if (TempData["msg10"] != null)
+        {
+            @Html.Raw(TempData["msg10"])
+        }
+    @{
+        var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        <img src='@imgsrc' style="max-width:300px;max-height:300px" />
+    }
+    <br />
+    <span class="lable">FullName:</span>
+    @Html.DisplayFor(model => model.FirstName)
+        @Html.DisplayFor(model => model.LastName)
+    <br /><hr />
+        <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+        @Html.DisplayFor(model => model.JobDescription)
+        <hr />
+        <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+        @Html.DisplayFor(model => model.Email)
+        <br /><hr />
+        <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+        @Html.DisplayFor(model => model.Mobile)
+<br />
+        @*
+    <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+    @Html.DisplayFor(model => model.Mobile)
+
+    <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+    @Html.DisplayFor(model => model.Email)
+    <br /><hr />
+    @*<span class="lable">@Html.DisplayNameFor(model => model.Experience):</span>
+    @Html.DisplayFor(model => model.Experience)
+    <hr /><br />*@
+        @*
+    <span class="lable">@Html.DisplayNameFor(model => model.UserName):</span>
+    @Html.DisplayFor(model => model.UserName)
+
+    <span class="lable">@Html.DisplayNameFor(model => model.Password):</span>
+    @Html.DisplayFor(model => model.Password)
+    <br /><hr />
+
+    @*<span class="lable">@Html.DisplayNameFor(model => model.EmployeeType.UserType):</span>
+    @Html.DisplayFor(model => model.EmployeeType.UserType)
+    <hr /><br />
+    <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+    @Html.DisplayFor(model => model.JobDescription)
+    <hr /><br />*@
+
+        <div class="statistics">
+            @Html.Action("ExperinceChart", "Marketing_Director")
+        </div>
+    
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+        @Html.ActionLink("Details", "Details", new { id = Model.ID }, new { @class = "glyphicon glyphicon-eye-open btn btn-primary" })
+
+
+</div>
+}
+
+<!--end personal information-->
+
+
+@section trainee_projects{
+    <div class="customer_projects">
+    <h2>MD And MTL Requests</h2>
+    <div id="current">
+
+        @Html.Action("displayRequests", "Marketing_Trainee")
+
+    </div>
+        <div class="cusotm-hr"></div>
+    <h2>All Current Projects</h2>
+    <div id="md_request">
+
+        @Html.Action("ListCurrentProjects", "Marketing_Trainee")
+
+    </div>
+    <h2>Previous  Delivered Projects</h2>
+    <div id="delivered">
+
+        @Html.Action("ListDeliveredProjects", "Marketing_Trainee")
+
+    </div>
+
+
+        <div class="cusotm-hr"></div>
+</div>
+}

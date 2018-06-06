@@ -1,0 +1,364 @@
+﻿
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    background-image:url(images/Sports.png);
+}
+h2{font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          background:#e3e3e3;
+          margin-top:0px;
+          padding:15px;}
+
+.title-of-home
+{
+    font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", "sans serif";
+    font-size:60px;
+    color:#47d7f3;
+    position:absolute;
+    margin-top:100px;
+    margin-left:30%;
+     -webkit-text-stroke-width: 1px;
+   -webkit-text-stroke-color: black;
+   opacity:.7;
+}
+
+
+
+.up-down { 
+            color: red;
+            font-size: 30px;
+            text-align: center;
+            width: 300px;
+            height: 120px;
+        }
+        
+        .up-down img {
+            position: absolute;
+            top: 0px;
+           left: 735px;
+            background: none;
+            margin-left:22%;
+            margin-top:-5%;
+        }
+
+
+/* Set padding to keep content from hitting the edges */
+
+/* Set width on the form input elements since they're 100% wide by default */
+
+
+/*start header*/
+.navbar-inverse .navbar-nav {
+    float: right;
+}
+/*end header*/
+
+
+/*start navbar*/
+
+.nav-sidebar {
+    width: 100%;
+    text-align: center;
+    width: 200px;
+    margin-left: 75%;
+    padding: 5px;
+    padding-right: 20px;
+    box-shadow: 3px 3px 3px 3px;
+    border-radius: 5px;
+}
+
+    .nav-sidebar a {
+        color: #333;
+    }
+
+    .nav-sidebar .active a {
+        cursor: default;
+        background-color: #428bca;
+        color: #fff;
+        text-shadow: 1px 1px 1px #666;
+    }
+
+        .nav-sidebar .active a:hover {
+            background-color: #428bca;
+        }
+/*end navbar*/
+
+/*start footer*/
+
+.footer {
+    background-color: #1EC0FF;
+    padding-top: 10px;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: -20%;
+}
+
+    .footer span {
+        float: left;
+        padding-top: 8px;
+        font-size: 18px;
+        margin-left: 10%;
+        color: black;
+    }
+
+    .footer ul {
+        list-style: none;
+        margin-right: 10%;
+    }
+
+        .footer ul li {
+            font-size: 35px;
+            padding-left: 10px;
+            float: right;
+        }
+
+            .footer ul li a {
+                color: black;
+            }
+
+            .footer ul li .face:hover {
+                color: #3b5998;
+            }
+
+            .footer ul li .goo:hover {
+                color: #dd4b39;
+            }
+
+            .footer ul li .you:hover {
+                color: #bb0000;
+            }
+
+            .footer ul li .twi:hover {
+                color: #00aced;
+            }
+
+/*end footer*/
+/*start popup
+#login-popup {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 120%;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+}
+
+.loginBoxWrapper {
+    width: 350px;
+    height: 35%;
+    margin: auto;
+    margin-top:10%;
+    border: 2px solid black;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+.loginBoxContent {
+     border-radius: 5px;
+    height: 100%;
+    background-color: #EEEEEF;
+    padding: 10px;
+}
+
+
+.regBoxWrapper {
+    width: 30%;
+    height: 90%;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+.regBoxContent {
+     border-radius: 5px;
+    height: 100%;
+    background-color: #EEEEEF;
+    padding: 10px;
+   /*background-image:url(images/image.jpg)
+}
+
+#signup-popup {
+   top: 10px;
+    position: fixed;
+    width: 100%;
+    height: 120%;
+    background-color: rgba(0,0,0,0.7);
+    display: none;
+    margin-top:-10px;
+}
+.login-and-close-buttons
+{
+   text-align:center;
+}*/
+.login-form {
+    margin-top: 10%;
+}
+/*end popup*/
+
+/*start reg form*/
+
+label {
+    font-size: 15px;
+    font-family: sans-serif;
+    color: #ffffff;
+}
+
+.form-control {
+    font-weight: bold;
+    width: 200px;
+}
+
+.pass-control {
+    font-size: 10px;
+    font-weight: bold;
+    width: 200px;
+}
+
+textarea {
+    outline: none;
+}
+/*end reg form*/
+/*start customs*/
+.test {
+    font-size: 50px;
+}
+
+.test {
+    font-size: 10px;
+    font-weight: bold;
+    width: 200px;
+}
+
+.custom-partial-layout {
+    width: 50%;
+    text-align: center;
+    font-size: 15px;
+    margin-bottom: 20px;
+    background: #E7E7E7;
+    border: 1px solid;
+    padding: 5px;
+    box-shadow: 3px 3px 5px 1px;
+    border-radius: 15px 0px 15px 0px;
+    margin-top: 30px;
+}
+ .mytr{background-color:#e3e2e2;}
+
+/*end customs*/
+/*start posts*/
+
+.posts {
+    border: 1px solid;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+/*end posts*/
+
+/*start popups*/
+
+/* The Modal (background) */
+.modal, .reg_modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #00aced;
+    margin: auto;
+    border: 1px solid #888;
+    width: 30%;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/*reg popup style*/
+.reg_modal-content {
+    position: relative;
+    background-color: #1EC0FF;
+    margin: auto;
+    margin-bottom: 5%;
+    padding: 0;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 50%;
+    box-shadow: 0 4px 4px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -250px;
+        opacity: 0;
+    }
+
+    to {
+        top: 200px;
+        opacity: 1;
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0;
+    }
+
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
+/* start The Close Button */
+.login_close, .reg_close {
+    color: black;
+    margin-left: 95%;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+    .login_close:hover, .login_close:focus, .reg_close:hover, .reg_close:focus {
+        color: red;
+        cursor: pointer;
+        text-decoration: none;
+        cursor: pointer;
+    }
+/* end The Close Button */
+
+/*modal body*/
+.modal-body {
+    margin-bottom: 10px;
+}
+
+/*end popups*/
+/*start slider*/
+.myslider{margin-left:20%;margin-top:-10px;}
+.myslider img{width:75%}
+/*end slider*/
+
+/*--reg button--*/
+.reg_button_in_login_modal{margin-left:37%;margin-top:10px;}
+.joinus_lable_in_login_modal{margin-left:37%;margin-top:10px;}
+/*--end--*/

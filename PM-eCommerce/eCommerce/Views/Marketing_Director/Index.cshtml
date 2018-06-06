@@ -1,0 +1,112 @@
+﻿@model eCommerce.Models.Employee
+@{
+    ViewBag.Title = "Marketing-Director";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+<style>
+    body {
+        background-image: url(../../Content/images/Sports.png);
+    }
+</style>
+<!--start personal information-->
+@section MD_personal_info{
+<div class="personal-info">
+    @if (Session["msg10"] != null)
+    {
+        @Html.Raw(Session["msg10"])
+    }
+
+    @if (Model.Photo != null)
+    {
+        var base64 = Convert.ToBase64String(Model.Photo);
+        var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+        <img src='@imgsrc' style="max-width:200px;max-height:200px" />
+    } <br />
+    <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+    @Html.DisplayFor(model => model.JobDescription)
+    <br />
+    <span class="lable">Full Name:</span>
+    @Html.DisplayFor(model => model.FirstName)
+    @Html.DisplayFor(model => model.LastName)
+    
+    <br />
+    <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+    @Html.DisplayFor(model => model.JobDescription)
+    <br />
+    <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+    @Html.DisplayFor(model => model.Email)
+    <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+    @Html.DisplayFor(model => model.Mobile)
+    <br /><hr />
+        @*
+        <span class="lable">@Html.DisplayNameFor(model => model.JobDescription):</span>
+        @Html.DisplayFor(model => model.JobDescription)
+        <br /><hr />
+        <span class="lable">@Html.DisplayNameFor(model => model.Mobile):</span>
+        @Html.DisplayFor(model => model.Mobile)
+        <span class="lable">@Html.DisplayNameFor(model => model.Email):</span>
+        @Html.DisplayFor(model => model.Email)
+        <br /><hr />
+        <span class="lable">@Html.DisplayNameFor(model => model.Experience):</span>
+        @Html.DisplayFor(model => model.Experience)
+
+            <span class="lable">@Html.DisplayNameFor(model => model.Experience):</span>
+        @Html.DisplayFor(model => model.Experience)<br />
+
+        <span class="lable">@Html.DisplayNameFor(model => model.UserName):</span>
+        @Html.DisplayFor(model => model.UserName)
+
+        <span class="lable">@Html.DisplayNameFor(model => model.EmployeeType.UserType):</span>
+        @Html.DisplayFor(model => model.EmployeeType.UserType)
+        <br /><br />*@
+
+   <div class="md_statistics">
+       @Html.Action("ExperinceChart", "Marketing_Director")
+    </div>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+    @Html.ActionLink("Details", "Details", new { id = Model.ID }, new { @class = "glyphicon glyphicon-eye-open btn btn-primary" })
+    </div>
+}
+
+
+
+<!--start projets-->
+@section MD_projects{
+<div class="md_posts">
+    <h3>Projects You Can Direct It</h3> @*هتبقى فى الهوم بيدج لمزيد من التفاصيل اقرا الديسكربشن*@
+    <div id="projects_direct">
+        @Html.Action("Show_All_Projects", "Marketing_Director")
+        @Html.Raw(TempData["msg"])
+    </div>
+    <div class="cusotm-hr"></div>
+    <h3>Projects Accepted By The Customer For Your direction</h3>
+    <div id="projects_Accepted">
+
+        @Html.Action("Show_All_accepted_Projects", "Marketing_Director")
+    </div>
+    <div class="cusotm-hr"></div>
+    <h3>The Delivered Projects</h3>
+    <div id="delivered_projects">
+        @Html.Action("Show_Delivered_Projects", "Marketing_Director")
+    </div>
+    <div class="cusotm-hr"></div>
+    <h3>The Current Managed Projects</h3>
+    <div id="Managed_projects">
+        @Html.Action("Show_maneged_Projects", "Marketing_Director")
+    </div>
+    <div class="cusotm-hr"></div>
+    <h3>Requestes Accepted By MTLs and MTs </h3>
+    <div id="Mts_acc">
+        @Html.Action("Show_All_accepted_Request_MTL_and_MT", "Marketing_Director")
+    </div>
+    <div class="cusotm-hr"></div>
+    <h3>Members Need Approval To leave a Project</h3>
+    <div id="MT">
+        @Html.Action("MTs_want_to_leave", "Marketing_Director")
+    </div>
+    <div class="cusotm-hr"></div>
+    </div>
+}
+

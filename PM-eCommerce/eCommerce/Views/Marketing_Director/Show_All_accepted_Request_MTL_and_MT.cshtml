@@ -1,0 +1,79 @@
+﻿@model IEnumerable<eCommerce.Models.Employee_Request>
+@if(Model != null) { 
+<table class="table">
+    <tr class="mytr">
+        <th>Photo</th>
+        <th>
+             Member Name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee1.Experience)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee1.JobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee1.EmployeeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestStatus.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @if (item.Employee1.Photo != null)
+            {
+                var base64 = Convert.ToBase64String(item.Employee1.Photo);
+                var imgsrc = String.Format("data:image/gif;base64,{0}", base64);
+
+                <img src='@imgsrc' style="max-width:80px;max-height:100px" />
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.FirstName)
+            @Html.DisplayFor(modelItem => item.Employee1.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.Experience)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.JobDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee1.EmployeeType.UserType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestStatus.Status)
+        </td>
+        <td>
+            @using (Html.BeginForm("Assign_Emp_To_Project", "Marketing_Director", new { id = item.ID }, FormMethod.Post, new { onsubmit = "return confirm('Add That Member To team?' );" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Add-ToProjectTeam" class="btn btn-primary"/>
+            }
+            
+        </td>
+
+    </tr>
+}
+
+</table>
+}else 
+{
+@Html.Action("emptyMessage","home")
+}

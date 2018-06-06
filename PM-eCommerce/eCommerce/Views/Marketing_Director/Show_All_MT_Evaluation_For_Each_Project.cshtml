@@ -1,0 +1,48 @@
+﻿@model IEnumerable<eCommerce.Models.MT_Evaluation>
+
+@{
+    ViewBag.Title = "Show_All_MT_Evaluation_For_Each_Project";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+@section MD_personal_info{
+@if(Model != null) { 
+<h2> MTLs 's FeedBack About Trainees</h2>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.Label("MT Name")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FeedBack)
+        </th>
+        <th>
+            @Html.Label("Project Title")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FeedBack)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+        </td>
+    </tr>
+}
+
+</table>
+
+
+}else
+{
+
+@Html.Action("emptyMessage","home")
+}}

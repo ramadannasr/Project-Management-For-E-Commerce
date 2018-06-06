@@ -1,0 +1,23 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Send_EMP_MD_Request</title>
+</head>
+<body>
+    <div>
+@if (TempData["msg10"] != null)
+            {
+    @Html.Raw(TempData["msg10"])
+}
+        @*@Html.Raw(TempData["msg10"])*@
+        @Html.ActionLink("Create_Team_Module", "Marketing_Director", new { id = Session["project_Id"] })
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<eCommerce.Models.Project>
+
+@{
+    ViewBag.Title = "Create_Team_Module";
+    Layout = "~/Views/admin-layout/_admin-layout.cshtml";
+}
+@section MD_personal_info{
+
+<h2>Create Your Team</h2>
+    <div class="custom-partial-layout">
+    <h2>All Marketing Team Leaders</h2>
+    <div id="MTLs">
+
+        @Html.Action("Show_All_MTLs", "Marketing_Director")
+
+
+    </div>
+</div>
+    <hr />
+    <div class="custom-partial-layout">
+    <h2>All Marketing Trainee</h2>
+    <div id="MTs">
+
+        @Html.Action("Show_All_MTs", "Marketing_Director")
+
+    </div>
+</div>
+    <hr />
+
+}

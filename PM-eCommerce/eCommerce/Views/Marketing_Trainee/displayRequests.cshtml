@@ -1,0 +1,46 @@
+﻿@model IEnumerable<eCommerce.Models.Employee_Request>
+
+@if(Model != null) { 
+<table class="table">
+    <tr class="mytr">
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+        </th>
+        <th>
+          Sender Name
+        </th>
+        <th>
+            Job 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestStatus.Status)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.FirstName)
+            @Html.DisplayFor(modelItem => item.Employee.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Employee.EmployeeType.UserType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RequestStatus.Status)
+        </td>
+        <td>
+
+            @Html.ActionLink("Accept", "acceptRequest", new { id=item.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" }) 
+            @Html.ActionLink("Details", "projectDetails", new { id=item.Project_ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" }) 
+            @Html.ActionLink("Reject", "rejectRequest", new { id=item.ID }, new { @class = "glyphicon glyphicon-edit btn btn-primary" })
+        </td>
+    </tr>
+}
+
+</table>
+}else {@Html.Action("emptyMessage","home")}

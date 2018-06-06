@@ -1,0 +1,69 @@
+﻿@model IEnumerable<eCommerce.Models.WorksOn>
+
+@if(Model != null) { 
+<table class="table">
+    <tr class="mytr">
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectTitle)
+        </th>
+        <th>
+            Customer 
+        </th>
+        <th>
+            MD 
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.Description)
+        </th>        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.ProjectTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(model => item.Project.Customer.FirstName)
+            @Html.DisplayFor(model => item.Project.Customer.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.MD_Cust_Request.FirstOrDefault(u => u.Project_ID == item.ProjectID).Employee.FirstName)
+            @Html.DisplayFor(modelItem => item.Project.MD_Cust_Request.FirstOrDefault(u => u.Project_ID == item.ProjectID).Employee.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Description)
+        </td>
+
+        <td>
+          
+            @if (item.Project.Employee_Request.FirstOrDefault(u => u.Sender_ID == item.Emp_ID && u.Project_ID == item.ProjectID) != null)
+            {
+                <p> Pending waiting for MD Approval</p>
+               @Html.ActionLink("Search For Trainees", "LISTALLTRAINEES", new { pmID = item.ProjectID }, new { @class="btn btn-primary"})
+                
+            }
+            else
+            {
+
+                using (Html.BeginForm("leaveProject", "Marketing_Team_Leader", new { id = item.ProjectID }, FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to Leave this Project?' );" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="leaveProject" class="btn btn-danger" />
+                    @Html.ActionLink("Search For Trainees", "LISTALLTRAINEES", new { pmID = item.ProjectID }, new { @class = "btn btn-default" })
+
+                }
+
+
+            }
+
+        </td>
+    </tr>
+}
+
+</table>
+}else
+{
+@Html.Action("emptyMessage","home")
+}

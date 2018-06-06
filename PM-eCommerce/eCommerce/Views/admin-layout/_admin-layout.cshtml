@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/images/home icon.png" rel="icon" />
+
+    <link href="~/Content/adminlayout.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/charts.js"></script>
+</head>
+<body>
+
+    <!--start header-->
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("eCommerce", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", title = "Go To Home" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @Html.ActionLink("LogOut", "LogOut", "home")
+                    </li>
+
+                    <li>
+                     
+                      @{String x = ""; }
+                      @if (Session["Username"] != null)
+                      {
+                          x = Session["Username"].ToString();
+                      }
+                      
+                        <a title="" style= "color:#fff;";>
+                            <i class="glyphicon glyphicon-user"></i>
+                             Welcome @x
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--end header-->
+
+    <!--start scroll up -->
+
+    <div id="scroll-up">
+
+        <img src="~/Content/images/up4.png" title="up">
+    </div>
+    <!--end scroll up -->
+
+    <div class="row">
+        <div class="col-md-4">
+            <!--start navbar-->
+            <div class="container">
+                <nav class="nav-sidebar">
+                    <ul class="nav">
+                        @if (Session["userType"] != null && Session["userType"].Equals("4"))// admin type
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "home")</li>
+                            <li class="active">@Html.ActionLink("My Profile", "Index", "Admin")</li>
+                            <li><a href="#approve" class="smoth_down">Posts need Approval</a></li>
+                            <li><a href="#current" class="smoth_down">Current Assigned Projects</a></li>
+                            <li><a href="#delivered" class="smoth_down">Previous Delivered Projects</a></li>
+                            <li><a href="#users" class="smoth_down">All Users</a></li>
+                            <li>@Html.ActionLink("Add New User", "AddNewUser", "Admin")</li>
+                            <li><a href="#customers" class="smoth_down">All Customers</a></li>
+                            <li>@Html.ActionLink("Add New Customer", "AddNewUser", new { type = 1 })</li>
+                        }
+                        else if (Session["userType"] != null && Session["userType"].Equals("1"))// MD type
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "home")</li>
+                            <li class="active">@Html.ActionLink("My Profile", "Index", "Marketing_Director")</li>
+                            <li><a href="#projects_direct" class="smoth_down">Projects To Direct It</a></li>
+                            <li><a href="#projects_Accepted" class="smoth_down">Accepted Projects By The Customer</a></li>
+                            <li><a href="#delivered_projects" class="smoth_down">Delivered Projects</a></li>
+                            <li><a href="#Managed_projects" class="smoth_down">Current Managed Projects</a></li>
+                            <li><a href="#Mts_acc" class="smoth_down">Requestes Accepted</a></li>
+                            <li><a href="#MT" class="smoth_down">Approval To leave</a></li>
+                        }
+                        else if (Session["userType"] != null && Session["userType"].Equals("2"))// Mtl type
+                        {
+                            <li>@Html.ActionLink("Home", "Index", "home")</li>
+                            <li class="active">@Html.ActionLink("My Profile", "Index", "Marketing_Team_Leader")</li>
+                            <li><a href="#mtlcurrent" class="smoth_down">CurrentProjects</a></li>
+                            <li><a href="#mtlDelieverd" class="smoth_down">Delieverd Projects</a></li>
+                            <li><a href="#mtlcurrent" class="smoth_down">Current Projects 's trainees</a></li>
+                            <li><a href="#mtlrequests" class="smoth_down">Requests</a></li>
+                        }
+                        <li class="nav-divider"></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!--end navbar-->
+        <!--start personal information-->
+        <div class="col-md-8">
+            <div>
+                @if (Session["userType"].Equals("2"))// MTL type
+            {
+                    @RenderSection("MTL_personal_section", false)
+
+                }
+                else if (Session["userType"].Equals("4"))// Admin type
+                {
+                    @RenderSection("admin_personal_section", false)
+
+                }
+                else if (Session["userType"].Equals("1"))// MD type
+                {
+                    @RenderSection("MD_personal_info", false)
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+    <!--end personal information-->
+    <!--start body-->
+    @RenderBody()
+
+    <div>
+        @if (Session["userType"].Equals("2"))// MTL type
+            {
+
+            @RenderSection("MTL_projects", false)
+          
+        }
+        else if (Session["userType"].Equals("4"))// Admin type
+        {
+            @RenderSection("Posts", false)
+
+        }
+        else if (Session["userType"].Equals("1"))// MD type
+        {
+            @RenderSection("MD_projects", false)
+        }
+    </div>
+
+    <!--end body-->
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/myscripts.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    
+</body>
+</html>

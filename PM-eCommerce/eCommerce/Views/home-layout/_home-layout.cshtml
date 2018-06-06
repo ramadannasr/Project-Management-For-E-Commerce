@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="~/Content/images/home icon.png" rel="icon" />
+
+    <link href="~/Content/homelayout.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/font awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!--start popup-->
+    <script>
+        /*     old pop up
+        function toggle_visibility(id) {
+            var e = document.getElementById(id);
+            var n = document.getElementById("nav");
+            if (e.style.display == 'block') {
+                e.style.display = 'none';
+                n.style.display = 'block';
+            }
+            else{
+                e.style.display = 'block';
+                n.style.display = 'none';}
+
+        if(e.style.display == 'none'){n.style.display = 'block';}
+
+        }
+        */
+
+    </script>
+    <!--end popup-->
+    <style>
+
+        label{margin:-10px;}
+    </style>
+</head>
+<body onload="load()">
+    @model eCommerce.Models.Employee
+    <!--start header-->
+    <div class="navbar navbar-inverse navbar-fixed-top" id="nav">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("eCommerce", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" ,title="Home"})
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @if (Session["Username"] == null)
+                        {
+                            <!--
+                            <a title="Login to Your Account"
+                               href="javascript:void(0)"
+                               onclick="toggle_visibility('login-popup');">
+                                LogIn
+                                <i class="glyphicon glyphicon-log-in"></i>
+                            </a>
+                            -->
+                            <a href="#" title="Login to Your Account" id="login_btn"><i class="glyphicon glyphicon-log-in"></i> LogIn</a>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("LogOut", "LogOut", "home")
+                        }
+                    </li>
+                    <li>
+                         @if (Session["Username"] == null)
+                         {
+                             <!--
+                        <a title="Join to US"
+                           href="javascript:void(0)"
+                           onclick="toggle_visibility('signup-popup');">
+                            <i class="glyphicon glyphicon-user"></i>
+                            SignUp
+                        </a>
+                                 -->
+                            <a href="#" title="Join Us" id="reg_btn"><i class="glyphicon glyphicon-user"></i> SignUp</a>
+                         }
+                         else
+                         {
+                            <a title="" style="color:white;">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Welcome @Session["Username"].ToString()
+                            </a>
+                         }
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <!--end header-->
+    <!--start navbar-->
+@if (Session["Username"] != null)
+{
+    <div class="container">
+        <nav class="nav-sidebar">
+             <ul class="nav">
+
+                 @*<li class="active"><a href=""><i class="glyphicon glyphicon-home"></i> Home</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-question-sign"></i> About</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-log-in"></i> Products</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-log-in"></i> FAQ</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-log-in"></i> FAQ</a></li>
+                    <li><a href=""><i class="glyphicon glyphicon-log-in"></i> FAQ</a></li>*@
+            
+               @if (Session["userType"] != null && Session["userType"].Equals("4"))// admin type
+               {
+                        <li class="active">@Html.ActionLink("Home", "Index", "home")</li>
+                        <li>@Html.ActionLink("My Profile", "Index", "Admin")</li>
+
+               }
+               else if (Session["userType"] != null && Session["userType"].Equals("1"))// MD type
+               {
+                        <li class="active">@Html.ActionLink("Home", "Index", "home")</li>
+                        <li >@Html.ActionLink("My Profile", "Index", "Marketing_Director")</li>
+
+               }
+               else if (Session["userType"] != null && Session["userType"].Equals("2"))// Mtl type
+               {
+                        <li class="active">@Html.ActionLink("Home", "Index", "home")</li>
+                        <li >@Html.ActionLink("My Profile", "Index", "Marketing_Team_Leader")</li>
+
+               }
+               else if (Session["userType"] != null && Session["userType"].Equals("5"))// Customer type
+               {
+                <li class="active">@Html.ActionLink("Home", "Index", "home")</li>
+                        <li >@Html.ActionLink("My Profile", "Index", "Customer")</li>
+
+               }
+               else if (Session["userType"] != null && Session["userType"].Equals("3"))// MT type
+               {
+                <li class="active">@Html.ActionLink("Home", "Index", "home")</li>
+                        <li >@Html.ActionLink("My Profile", "Index", "Marketing_Trainee")</li>
+               }
+
+            </ul>
+        </nav>
+    </div>
+}
+    <!--end navbar-->
+    <!--start body-->
+    <div class="container">
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+    <!--end body-->
+   
+
+    
+
+    @if (Session["Username"] == null)
+    {
+        <div class="title-of-home">Market Your Project</div>
+        <div class="myslider">
+            <img class="mySlides" src="~/Content/images/slider1.jpg">
+            <img class="mySlides" src="~/Content/images/slider2.jpg">
+            <img class="mySlides" src="~/Content/images/slider3.jpg">
+            <img class="mySlides" src="~/Content/images/slider4.jpg">
+            <img class="mySlides" src="~/Content/images/slider5.jpg">
+        </div>
+    }
+    <script>
+var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}
+    x[myIndex-1].style.display = "block";
+    setTimeout(carousel, 4000); // Change image every 2 seconds
+}
+    </script>
+
+    <!--                                                                                صوره بتطلع وتنزل لوحدها
+        -->
+@if (Session["Username"] == null)
+{
+         <div class="up-down">
+        <img src="~/Content/images/up.png">
+          
+        </div>
+   <script>
+
+       /*   صوره بتطلع وتنزل لوحدها */
+       
+       (function animatimage() {
+   
+   
+           $('.up-down img').animate({
+               top: '100px'
+           }, 500, function () {
+               $(this).animate({
+                   top: '110px'
+               }, 500,function(){
+                   animatimage();
+               });
+           });
+       })();
+   
+   
+
+   </script>
+
+}
+     <!--start popup-->
+    <!--start login-->
+
+    <!--
+    <div id="login-popup">
+        <div class="loginBoxWrapper">
+            <div class="loginBoxContent">
+        -->
+
+    <!-- Trigger/Open The Modal -->
+
+    <!-- The Modal -->
+    <div id="login_dialog" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="login_close">&times;</div>
+            <div class="modal-body">
+                @using (Html.BeginForm("LogIn", "home", FormMethod.Post))
+            {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal login-form">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "username" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-4" })
+                            <div class="col-md-8">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-offset-4 col-md-9">
+                            <input type="submit" value="Sign in" class="btn btn-default" />
+                        </div> <!-- wrapper end -->
+                        <label class="joinus_lable_in_login_modal">Or Join Us</label>
+                    </div>
+                }
+                <input type="submit" value="Sign Up" class="btn btn-primary reg_button_in_login_modal" id="my_btn" onclick="start_reg_modal();" />
+
+            </div>
+        </div>
+    </div>
+    <script>
+                  /*-- when click on signup button show the reg modal --*/
+                  function start_reg_modal()
+                  {
+                     // alert("test");
+                      document.getElementById('reg_dialog').style.display = 'block';
+                      document.getElementById('login_dialog').style.display = 'none';
+                  }
+                  /*end*/
+    </script>
+
+                <!--
+            </div>
+        </div>
+    </div>
+-->
+    <!--end login-->
+
+    <!--start regestration-->
+    <!--
+    <div class="reg-form">
+        <div id="signup-popup">
+            <div class="regBoxWrapper">
+                <div class="regBoxContent">
+        -->
+    <!-- Trigger/Open The Modal -->
+
+    <!-- The Modal -->
+    <div id="reg_dialog" class="reg_modal">
+
+        <div class="reg_modal-content">
+            <span class="reg_close">&times;</span>
+            <div class="">
+                @using (Html.BeginForm("Create", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = "first name" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = "last name" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.JobDescription, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.JobDescription, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Mobile, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Mobile, new { htmlAttributes = new { @class = "form-control", placeholder = "mobile" } })
+                                @Html.ValidationMessageFor(model => model.Mobile, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "email" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                <input type="file" name="image" id="image" accept = "image/*" />
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control", placeholder = "experience" } })
+                                @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserType, "UserType", htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.DropDownList("UserType", null, "--Select Your Type--", htmlAttributes: new { @class = "form-control", placeholder = "usertype" })
+                                @Html.ValidationMessageFor(model => model.UserType, "", new { @class = "text-danger" })
+                            </div>
+
+                        </div>
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-9">
+                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "username" } })
+                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-3" })
+                            <div class="col-md-9">
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", placeholder = "Password" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-9">
+                                <input type="submit" value="Register" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <!--
+                </div>
+            </div>
+        </div>
+    </div>
+        -->
+    <!--end regestration-->
+    <!--end popup-->
+    <!-- start  footer-->
+    <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <span>&copy; @DateTime.Now.Year - fcih.Team</span>
+            <ul>
+                <li> <a href="https://www.facebook.com/" target="_blank" title="facebook" class="face"><i class="fa fa-facebook-square"></i> </a> </li>
+                <li> <a href="https://www.google.com.eg/" target="_blank" title="google" class="goo"><i class="fa fa-google-plus-square"></i> </a> </li>
+                <li> <a href="https://www.youtube.com/" target="_blank" title="youtube" class="you"><i class="fa fa-youtube-square"></i> </a> </li>
+                <li> <a href="http://twitter.com/" target="_blank" title="twitter" class="twi"><i class="fa fa-twitter-square"></i> </a> </li>
+            </ul>
+        </div>
+    </div>
+    <!-- end footer-->
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/nice scroll/jquery.nicescroll.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/myscripts.js"></script>
+
+
+   
+
+
+@if (Session["Username"] == null )
+{
+<script type="text/javascript">
+   
+    function load() {
+      
+        document.getElementById('login_dialog').style.display = "block";
+    }
+</script>
+}
+
+
+
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+
+</body>
+</html>

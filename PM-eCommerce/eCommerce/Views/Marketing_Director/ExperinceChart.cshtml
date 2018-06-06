@@ -1,0 +1,18 @@
+﻿
+@{
+    int ex = int.Parse(Session["exper"].ToString());
+    int num = int.Parse(ViewData["NumProjects"].ToString());
+}
+
+    <div id="myDiv" class="test"><!-- Plotly chart will be drawn inside this DIV --></div>
+    <script>
+    var data = [{
+        x: ['experience', 'Number Of Projects '],
+        y: [@ex,@num],
+  type: 'bar'
+}];
+
+Plotly.newPlot('myDiv', data);
+    </script>
+
+    
